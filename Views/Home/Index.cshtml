@@ -1,0 +1,206 @@
+﻿@{
+    ViewData["Title"] = "Deluxe Hotel";
+}
+
+<style>
+    body {
+        background: linear-gradient(180deg, #f8f9fc, #eef1f7);
+    }
+
+    /* HERO */
+    .hero {
+        position: relative;
+        height: 420px;
+        border-radius: 28px;
+        background: url('/images/hotel/otel.jpg') center/cover no-repeat;
+        overflow: hidden;
+        box-shadow: 0 30px 70px rgba(0,0,0,.25);
+    }
+
+        /* 🔹 YUMUŞATILMIŞ OVERLAY (ASIL DÜZELTME BURADA) */
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient( 135deg, rgba(102,126,234,0.55), rgba(118,75,162,0.45) );
+        }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+    }
+
+        .hero-content h1 {
+            text-shadow: 0 6px 20px rgba(0,0,0,.35);
+        }
+
+        .hero-content p {
+            text-shadow: 0 4px 12px rgba(0,0,0,.25);
+        }
+
+        .hero-content a {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 30px;
+            padding: 12px 36px;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 12px 30px rgba(102,126,234,.5);
+            transition: .3s ease;
+        }
+
+            .hero-content a:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 18px 40px rgba(102,126,234,.6);
+            }
+
+    /* GLASS */
+    .glass {
+        background: rgba(255,255,255,.7);
+        backdrop-filter: blur(14px);
+        border-radius: 24px;
+        box-shadow: 0 18px 40px rgba(0,0,0,.12);
+    }
+
+    /* SERVICES */
+    .service {
+        transition: .4s ease;
+        border-radius: 22px;
+    }
+
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 55px rgba(0,0,0,.2);
+        }
+
+    .icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        margin: auto;
+        margin-bottom: 14px;
+        box-shadow: 0 12px 25px rgba(102,126,234,.45);
+    }
+
+    /* GALLERY */
+    .gallery img {
+        border-radius: 24px;
+        height: 260px;
+        width: 100%;
+        object-fit: cover;
+        transition: .5s ease;
+        box-shadow: 0 18px 35px rgba(0,0,0,.18);
+    }
+
+        .gallery img:hover {
+            transform: scale(1.06);
+        }
+</style>
+
+<div class="container mt-4">
+
+    <!-- HERO -->
+    <div class="hero mb-5">
+        <div class="hero-content">
+            <h1 class="fw-bold display-4">Deluxe Hotel</h1>
+            <p class="fs-5 opacity-75">
+                İstanbul · Beşiktaş · Lüks & Konfor
+            </p>
+            <a href="/Rooms">Odaları Keşfet</a>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="glass p-4 mb-5 row align-items-center">
+        <div class="col-md-8">
+            <h3 class="fw-bold mb-3">Otel Hakkında</h3>
+            <p class="text-muted mb-0">
+                Deluxe Hotel, şehir merkezinde konumlanan, modern mimarisi ve
+                premium hizmet anlayışıyla misafirlerine üst düzey bir
+                konaklama deneyimi sunar.
+            </p>
+        </div>
+        <div class="col-md-4 mt-3 mt-md-0">
+            <img src="/images/hotel/odanumarafoto.jpg"
+                 class="img-fluid rounded-4 shadow">
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <h3 class="fw-bold mb-4">Öne Çıkan Hizmetler</h3>
+    <div class="row mb-5">
+
+        <div class="col-md-4 mb-4">
+            <div class="glass service p-4 text-center">
+                <div class="icon">📶</div>
+                <h5 class="fw-bold">Ücretsiz Wi-Fi</h5>
+                <p class="text-muted">Yüksek hızlı internet</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="glass service p-4 text-center">
+                <div class="icon">🥐</div>
+                <h5 class="fw-bold">Açık Büfe</h5>
+                <p class="text-muted">Zengin kahvaltı</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="glass service p-4 text-center">
+                <div class="icon">🏋️</div>
+                <h5 class="fw-bold">Fitness</h5>
+                <p class="text-muted">Modern spor alanı</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="glass service p-4 text-center">
+                <div class="icon">🕒</div>
+                <h5 class="fw-bold">24 Saat Resepsiyon</h5>
+                <p class="text-muted">Kesintisiz destek</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="glass service p-4 text-center">
+                <div class="icon">🚗</div>
+                <h5 class="fw-bold">Otopark</h5>
+                <p class="text-muted">Güvenli park alanı</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GALLERY -->
+    <h3 class="fw-bold mb-4">Galeri</h3>
+    <div class="row gallery mb-5">
+
+        <div class="col-md-4 mb-4">
+            <img src="/images/hotel/otel1.jpg">
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <img src="/images/hotel/otel2.jpg">
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <img src="/images/hotel/hotel-header.jpg">
+        </div>
+
+    </div>
+
+</div>

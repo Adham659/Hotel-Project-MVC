@@ -1,0 +1,144 @@
+﻿@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<style>
+    body {
+        background: linear-gradient(180deg, #f8f9fc, #eef1f7);
+    }
+
+    .login-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .login-box {
+        width: 100%;
+        max-width: 420px;
+        background: rgba(255,255,255,.75);
+        backdrop-filter: blur(14px);
+        padding: 45px 40px;
+        border-radius: 26px;
+        box-shadow: 0 20px 45px rgba(0,0,0,.15);
+    }
+
+        .login-box input {
+            height: 52px;
+            border-radius: 14px;
+            border: 1px solid #ddd;
+            padding-left: 16px;
+            font-size: 16px;
+            transition: .3s ease;
+        }
+
+            .login-box input:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 0 4px rgba(102,126,234,.15);
+            }
+
+        .login-box label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #495057;
+        }
+
+    .btn-login {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        border-radius: 30px;
+        height: 52px;
+        font-size: 17px;
+        border: none;
+        font-weight: 600;
+        transition: .3s ease;
+        box-shadow: 0 10px 25px rgba(102,126,234,.45);
+    }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 35px rgba(102,126,234,.6);
+            color: #fff;
+        }
+
+    .password-wrapper {
+        position: relative;
+    }
+
+        .password-wrapper i {
+            position: absolute;
+            right: 18px;
+            top: 42px;
+            cursor: pointer;
+            color: #667eea;
+            font-size: 18px;
+        }
+
+    .login-title {
+        font-size: 26px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .login-box a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .login-box a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<div class="login-wrapper">
+
+    <div class="login-box">
+
+        
+
+        <h3 class="login-title mb-4 text-center">
+            Giriş Yapın
+        </h3>
+
+        <form method="post">
+
+            <div class="mb-3">
+                <label>E-posta adresi veya kullanıcı adı</label>
+                <input type="email" name="email" class="form-control" required />
+            </div>
+
+            <div class="mb-3 password-wrapper">
+                <label>Parola</label>
+                <input type="password" name="password" id="passInput" class="form-control" required />
+                <i class="bi bi-eye" onclick="togglePassword()"></i>
+            </div>
+
+           
+
+            <button class="btn btn-login w-100">
+                Giriş Yap
+            </button>
+
+            <div class="text-center mt-4">
+                <a asp-controller="Account" asp-action="Register">
+                    Hesabınız yok mu? Kayıt olun
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function togglePassword() {
+            const pass = document.getElementById("passInput");
+            pass.type = pass.type === "password" ? "text" : "password";
+        }
+    </script>
+}

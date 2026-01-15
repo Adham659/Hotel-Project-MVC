@@ -1,0 +1,142 @@
+﻿@model IEnumerable<DeluxeHotelMVC.Models.Room>
+
+@{
+    ViewData["Title"] = "Odalar";
+}
+
+<style>
+    body {
+        background: linear-gradient(180deg, #f8f9fc, #eef1f7);
+    }
+
+    .room-card {
+        border-radius: 22px;
+        overflow: hidden;
+        background: #ffffff;
+        transition: all 0.35s ease;
+    }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+    .room-img {
+        height: 240px;
+        object-fit: cover;
+    }
+
+    .room-badge {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        padding: 8px 18px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        font-size: 0.85rem;
+        border-radius: 30px;
+        font-weight: 600;
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .room-desc {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+    .price {
+        font-size: 1.7rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #20bf55, #01baef);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .feature-list li {
+        margin-bottom: 8px;
+        color: #495057;
+        font-size: 0.9rem;
+    }
+
+    .feature-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .btn-reserve {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border: none;
+        border-radius: 30px;
+        padding: 12px;
+        font-weight: 600;
+        color: #fff;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.35);
+    }
+
+        .btn-reserve:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(102, 126, 234, 0.45);
+            color: #fff;
+        }
+</style>
+
+<h2 class="text-center fw-bold mb-5 mt-4 display-6">
+    🌿 Konforlu Odalarımız
+</h2>
+
+<div class="row g-4">
+    @foreach (var room in Model)
+    {
+        <div class="col-md-4">
+            <div class="card room-card h-100 border-0">
+
+                <div class="position-relative">
+                    <img src="~/images/hotel/oteloda.jpg"
+                         class="card-img-top room-img" />
+
+                    <span class="room-badge">
+                        @room.RoomType.Name
+                    </span>
+                </div>
+
+                <div class="card-body d-flex flex-column p-4">
+
+                    <p class="room-desc mb-2">
+                        @room.RoomType.Description
+                    </p>
+
+                    <div class="mb-3">
+                        <span class="price">
+                            @room.RoomType.PricePerNight ₺
+                        </span>
+                        <span class="text-muted small"> / Gece</span>
+                    </div>
+
+                    <ul class="list-unstyled feature-list mb-4">
+                        @foreach (var f in room.RoomFeatures)
+                        {
+                            <li>
+                                <span class="feature-dot"></span>
+                                @f.Feature.Name
+                            </li>
+                        }
+                    </ul>
+
+                    <a class="btn btn-reserve mt-auto"
+                       asp-controller="Reservations"
+                       asp-action="Create"
+                       asp-route-roomId="@room.RoomID">
+                        Rezervasyon Yap
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>

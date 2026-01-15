@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Deluxe Hotel</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        body {
+            background: linear-gradient(180deg, #f8f9fc, #eef1f7);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            padding: 18px 0;
+            background: rgba(255,255,255,.75) !important;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.1);
+        }
+
+        .navbar-brand {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            font-size: 16px;
+            margin-left: 16px;
+            font-weight: 500;
+            color: #495057 !important;
+            transition: .3s ease;
+        }
+
+            .nav-link:hover {
+                color: #667eea !important;
+            }
+
+            .nav-link.active {
+                color: #667eea !important;
+                font-weight: 600;
+            }
+
+        /* BUTTONS */
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 30px;
+            padding: 8px 22px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(102,126,234,.4);
+        }
+
+            .btn-primary:hover {
+                box-shadow: 0 14px 30px rgba(102,126,234,.55);
+            }
+
+        .btn-outline-primary {
+            border-radius: 30px;
+            padding: 8px 22px;
+            font-weight: 600;
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+
+            .btn-outline-primary:hover {
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: #fff;
+                border-color: transparent;
+            }
+
+        .btn-danger {
+            border-radius: 30px;
+            padding: 8px 22px;
+            font-weight: 600;
+        }
+
+        /* CONTAINER OFFSET */
+        .page-container {
+            margin-top: 130px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+
+            <a class="navbar-brand"
+               asp-controller="Home"
+               asp-action="Index">
+                Deluxe Hotel
+            </a>
+
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Home"
+                           asp-action="Index">
+                            Ana Sayfa
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Rooms"
+                           asp-action="Index">
+                            Odalar
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Reviews"
+                           asp-action="Index">
+                            Yorumlar
+                        </a>
+                    </li>
+
+                    @* Giriş yapan kullanıcı *@
+                    @if (Context.Session.GetInt32("UserID") != null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold"
+                               style="color:#667eea !important"
+                               asp-controller="Reservations"
+                               asp-action="MyReservations">
+                                📄 Rezervasyonlarım
+                            </a>
+                        </li>
+                    }
+                </ul>
+
+                <ul class="navbar-nav">
+
+                    @if (Context.Session.GetInt32("UserID") == null)
+                    {
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary me-2"
+                               asp-controller="Account"
+                               asp-action="Login">
+                                Giriş
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="btn btn-primary"
+                               asp-controller="Account"
+                               asp-action="Register">
+                                Kayıt Ol
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <span class="nav-link fw-semibold">
+                                👤 @Context.Session.GetString("UserName")
+                            </span>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="btn btn-danger"
+                               asp-controller="Account"
+                               asp-action="Logout">
+                                Çıkış
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container page-container">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

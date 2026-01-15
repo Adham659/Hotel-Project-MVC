@@ -1,0 +1,28 @@
+﻿@{
+    var room = ViewBag.Room;
+}
+
+<h2>Rezervasyon Yap</h2>
+
+<div class="card p-4 shadow-sm">
+    <h4>@room.RoomName</h4>
+
+    <p><strong>Oda No:</strong> @room.RoomNumber</p>
+    <p><strong>Gecelik Fiyat:</strong> @room.PricePerNight ₺</p>
+
+    <form method="post">
+
+        <input type="hidden" name="roomId" value="@room.RoomID" />
+
+        <label class="form-label">Giriş Tarihi</label>
+        <input type="date" name="checkIn" class="form-control" required />
+
+        <label class="form-label mt-3">Çıkış Tarihi</label>
+        <input type="date" name="checkOut" class="form-control" required />
+
+        <label class="form-label mt-3">Kişi Sayısı</label>
+        <input type="number" name="guests" class="form-control" value="1" min="1" />
+
+        <button class="btn btn-primary mt-4">Rezervasyonu Tamamla</button>
+    </form>
+</div>

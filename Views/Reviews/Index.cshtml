@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DeluxeHotelMVC.Models.Review>
+
+<h2 class="mt-4 mb-4 text-center fw-bold">Yorumlar</h2>
+
+<a class="btn btn-primary mb-3" asp-controller="Reviews" asp-action="Create">
+    Yorum Yaz
+</a>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">
+        Henüz yorum yapılmamış.
+    </div>
+}
+else
+{
+    foreach (var r in Model)
+    {
+        <div class="card mb-3 shadow-sm p-3">
+            <h5><b>@r.User.FirstName @r.User.LastName</b></h5>
+
+            <p>
+                ⭐⭐⭐⭐⭐
+                <b>@r.Rating / 5</b>
+            </p>
+
+            <p>@r.Comment</p>
+
+            <small class="text-muted">@r.CreatedAt.ToString("dd MMM yyyy")</small>
+        </div>
+    }
+}
